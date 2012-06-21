@@ -1,0 +1,497 @@
+body {
+	padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+} 
+
+*:focus {
+	outline: 0 !important;
+}
+
+.clearboth {
+	clear: both;
+} 
+
+.navbar-inner {
+	background-color: #536D89;
+	background-image: -moz-linear-gradient(center top , #536D89, #3B546F);
+	border-top: 1px solid #6894C3;
+	border-bottom: 1px solid #000;
+	color: #efefef;
+}  
+
+.navbar .brand,
+.navbar .nav > li > a {
+	color: #efefef;
+}  
+
+.navbar .nav > li > a:hover {
+	background-color: #344960;
+}
+
+.navbar .nav .active > a, 
+.navbar .nav .active > a:hover {
+	background-color: #18222D;
+}
+
+.tab-content {
+    border-radius: 0 0 3px 3px;
+    border: 1px solid #ddd;
+    border-top: 0;
+    color: #555555;
+    margin-top: -19px;
+    overflow: auto;
+    padding: 2em 1em 0;
+}
+
+.nav-tabs li.inactive a {
+	color: #c6c6c6;
+	font-style: italic;
+}
+
+.nav-tabs li.inactive a:hover {
+	background-color: #fff;
+	border-color: #fff #fff #ddd #fff;
+	cursor:	default;
+}
+
+.nav-tabs .active a {
+	font-weight:bold;
+	color: #000;
+}
+
+button i[class^="icon-"], button i[class*=" icon-"] {
+	vertical-align: inherit;
+	margin-top: -4px; 
+}
+   
+#contract-search-spinner {
+	display: none;
+} 
+
+form#contract-search-form.inProgress #contract-search-spinner {
+	display: inline;
+}
+
+#contract-not-found {
+	display: none;
+}
+
+#contract-not-found p {
+	border-bottom: 2px groove #fff;
+	padding-bottom: 10px;
+}
+
+#contract-not-found button.btn {
+	margin-right: 1em;
+}
+
+#contract-headers {
+	display: none;
+}
+
+form#contractHeader label {
+	font-weight: bold;
+	width: 100%;
+}
+
+.headerField input[type=text],
+.headerField select {
+	width: 100%;
+}
+
+.headerField #vendorid,
+.headerField #remitto {
+	width: 70%;
+}
+
+.modal-body button.btn {
+	vertical-align: top;
+}
+
+#contractHeader fieldset {
+	padding-bottom: 2em;
+	margin-bottom: 2em;
+	border-bottom: 2px groove #fff;
+}
+
+#contractHeader fieldset:last-child {
+	border-bottom: none;
+}
+
+button.trigger {
+	margin-left: 0.3em;
+}
+
+.datebox:first-child {
+	margin-left: 1.5em;
+}
+
+.datebox {
+	width: 32%;
+	float: left;
+}
+
+#timelinetitle {
+	margin-top: 1em;
+}
+
+#timeline {
+	border-left: 2px solid #666;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	height: 3em;
+	overflow: hidden;
+}
+
+#timeline .datesegment {
+	float: left;
+	width: 33%;
+	border-right: 2px solid #666;
+}
+
+#timeline .datesegment:last-child {
+	border-right: 2px solid #666;
+}
+
+#timeline .segmentname {
+	border-bottom: 2px solid #666;
+	width: 100%;
+	display: block;
+	text-align: center;
+}
+
+#timeline .segmentdate {
+	text-align: center;
+	text-transform: lowercase;
+	display: block;
+	color: green;
+}
+
+#timeline .segmentenddate{
+	display:none;
+}
+
+.timeslider {
+	width: 29%;
+	float: left;
+	padding: 0 0 0 0.5em ;
+	margin-right: 2.25em;
+}
+
+.timeslider h4, .timeslider p {
+	margin-left: -0.5em;
+}
+
+.timeslider a:focus {
+	outline: none;
+	outline-offset: 0;
+}
+
+.timeslider a:hover, .timeslider a:active, .timeslider a:focus {
+	cursor: url('/aqm/core/images/grab_hand.png'),auto;
+}
+
+.ui-slider-horizontal .ui-slider-handle {
+    top: -0.25em;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+	display: inline-block;
+  *display: inline;
+  padding: 0px 4px 0px;
+  margin-bottom: 0;
+  *margin-left: .3em;
+  font-size: 13px;
+  line-height: 18px;
+  *line-height: 20px;
+  color: #333333;
+  text-align: center;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+  vertical-align: middle;
+  cursor: pointer;
+  background-color: #f5f5f5;
+  *background-color: #e6e6e6;
+  background-image: -ms-linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
+  background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+  background-repeat: repeat-x;
+  border: 1px solid #cccccc;
+  *border: 0;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+  border-bottom-color: #b3b3b3;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffffff', endColorstr='#e6e6e6', GradientType=0);
+  filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+  *zoom: 1;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+     -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #49afcd;
+  *background-color: #2f96b4;
+  background-image: -ms-linear-gradient(top, #5bc0de, #2f96b4);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5bc0de), to(#2f96b4));
+  background-image: -webkit-linear-gradient(top, #5bc0de, #2f96b4);
+  background-image: -o-linear-gradient(top, #5bc0de, #2f96b4);
+  background-image: -moz-linear-gradient(top, #5bc0de, #2f96b4);
+  background-image: linear-gradient(top, #5bc0de, #2f96b4);
+  background-repeat: repeat-x;
+  border-color: #2f96b4 #2f96b4 #1f6377;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#5bc0de', endColorstr='#2f96b4', GradientType=0);
+  filter: progid:dximagetransform.microsoft.gradient(enabled=false);          
+}
+
+.ui-state-hover, .ui-state-active, .ui-state-focus {
+	background-color: #2f96b4;
+  *background-color: #2a85a0;
+  background-color: #24748c \9;
+  outline: 0;
+  cursor: url('/aqm/core/images/grab_hand.png'),auto;
+  
+}
+
+.ui-state-hover {
+	color: #333333;
+  text-decoration: none;
+  background-color: #e6e6e6;
+  *background-color: #d9d9d9;
+  /* Buttons in IE7 don't get borders, so darken on hover */
+
+  background-position: 0 -15px;
+  -webkit-transition: background-position 0.1s linear;
+     -moz-transition: background-position 0.1s linear;
+      -ms-transition: background-position 0.1s linear;
+       -o-transition: background-position 0.1s linear;
+          transition: background-position 0.1s linear;
+   cursor: url('/aqm/core/images/grab_hand.png'),auto;     
+}
+
+.ui-state-active {
+	outline: 0;
+  -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+     -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+          box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+          cursor: url('/aqm/core/images/grab_hand.png'),auto;
+}
+
+.ui-state-focus {
+	  outline: none;
+  outline: 0px auto -webkit-focus-ring-color;
+  cursor: url('/aqm/core/images/grab_hand.png'),auto;
+}
+
+.ui-widget *:active {
+    outline: 0;
+}
+
+.ui-slider a i {
+	margin-top: -2px;
+	margin-left: -1px;
+}
+
+.sliderscale {
+	margin-top: 5px;
+	font-weight: bold;
+	font-size: 0.875em;
+}
+
+.slider0 {
+	float: left;
+	margin-left: 2px
+}
+
+.slider15 {
+	position: relative;
+	left: 50%;
+	margin-left: -10px
+}
+
+.slider60 {
+	float: right;
+	margin-right: -9px;
+	right: 0;
+}
+
+#basediscount .tab-content {
+	background-color:#fff;
+	border-top: 1px solid #ddd;
+}
+
+#discountoptions {
+	padding-bottom: 2em;
+}
+
+.discountbox {
+	width: 33%;
+	float: left;
+	text-align: center;
+	overflow: hidden;
+	position: relative;
+}
+
+.discountbox .discoutnum {
+	position: absolute;
+	font-weight: bold;
+	font-size: 22px;
+	color: #999;
+	left: 0.25em;
+}
+
+.discountbox label {
+	margin-left: 2.5em;
+	text-align: left;
+}
+
+.discountbox input {
+	margin-left: -5.5em;
+}
+
+#baserates {
+	padding-bottom: 1.5em;
+	overflow: hidden;
+}
+
+.baseratesbox {
+	float: left;
+	width: 20%;
+}
+
+.baseratesbox input, .baseratesbox select {
+	width: 90%
+}
+
+#baseratestartdate input, #baserateenddate input {
+	width: 75%;
+	margin-right: 0.25em;
+}
+
+#baseratesbuttons {
+	margin-top: 1.7em;
+}
+
+#baseratesbuttons .btn {
+	margin-left: 1em;
+}
+
+#baseratestable {
+	display: none;
+	clear: both;
+    margin-top: 5em;
+    width: 100%;
+}
+
+#vendorSearchResults {
+	display: none;
+	width: 100%;
+}
+
+#vendorSearchResults table {
+	width: 100%;
+}
+
+#vendorSearchResults table tr>td+td {
+	background-color: #fff;
+	border-width: 0 0 0 1px;
+}
+
+#TNcontractnumber, #TNvendorid {
+	border: none;
+	background-color: transparent;
+	box-shadow: none;
+}
+
+#rates #contractHeader fieldset#headers {
+	padding-bottom: 0em;
+	margin-bottom: 0;	
+}
+
+#tailnumbers {
+	overflow: hidden;
+	margin-bottom: 1em;
+}
+
+#tailnumbers h3, #tailnumbers button#addTailNumBtn {
+	float: left;
+}
+
+#tailnumbers a#addTailNumBtn {
+	margin-left: 1em;
+	margin-top: 3px;
+}
+
+
+#tailnumbers a#addTailNumBtn i{
+	margin-top: 0px;
+}
+
+.row {
+	display: table-row;
+}
+
+.cell {
+	display: table-cell;
+}
+
+div#rates.tab-pane #tailNumModalForm {
+	width: 1060px;
+	left: 30.5%;
+	top: 300px;
+}
+
+div#tailNumModalForm .modal-body {
+	height: auto;
+	max-height: 600px;
+	overflow: scroll-y;
+}
+
+div#tailNumModalForm  h4 {
+	border-bottom: 2px groove #fff;
+	margin-top: 2em;
+	margin-bottom: 5px;
+}
+
+div#tailNumModalForm  h4:first-child {
+	margin-top: 0;
+}
+
+div#tailNumModalForm .cell {
+	padding: 0.5em;
+}
+
+div#tailNumModalForm button.btn-primary {
+	margin-top: 22px;
+}
+
+div.addRateFormFields + div.row>div.cell {
+	padding-top: 0 !important;
+}
+
+div#tailNumModalForm button i {
+	margin-top: 1px;
+}
+
+.addRateFormFields {
+	display: none;
+	margin-left: 0px !important;
+}
+
+.addRateFormFields input, .addRateFormFields select  {
+	margin-bottom: 0;
+}
+
+.lineRatesTable {
+	display: none;
+}
+
+#tailnumberlist {
+	clear: both;
+	font-weight: bold;
+	text-transform: uppercase;
+}

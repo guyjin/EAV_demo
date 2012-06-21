@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>EAV 2.0</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link  href="css/redmond.datepick.css" rel="stylesheet">
+    <link  href="css/redmond/jquery-ui-1.8.21.custom.css" rel="stylesheet">
+    <link href="css/eav.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="http://twitter.github.com/bootstrap/assets/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-57-precomposed.png">
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">EAV</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li class="active"><a href="#"><i class="icon-home icon-white"></i>Home</a></li>
+              <li><a href="#vendors">Vendors</a></li>
+              <li><a href="#pins">PINS</a></li>
+              <li><a href="#cor">COR Reports</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <ul class="nav nav-tabs" id="eav-tabs">
+        <li class="active">
+          <a href="#contract" data-toggle="tab" id="contract-tab">Contract</a>
+        </li>
+        <li class="inactive">
+          <a href="#rates" data-toggle="tab" id="rates-tab">Rates</a>          
+        </li>
+        <li class="inactive">
+          <a href="#access" data-toggle="tab" id="access-tab">Access</a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="contract">
+          <div id="contract-search-box">
+            <div id='intro'>
+              <h3>Step 1, The Search.</h3>
+              <p>
+                Welcome to EAV.  Let's get started, search for either a new or existing contract in the field below by entering the Contract Number and clicking <strong>'Search'</strong>.
+              </p>
+            </div>
+            <form class="well form-inline" id="contract-search-form">
+              <label for="contract-number">
+                Contract Number:
+              </label>
+              <input type="text" class="" name="contract-number" id="contract-number" placeholder="XX-XXXX-X-XX-XXXX">
+              <button class="btn btn-primary disabled" id="contract-search-submit" disabled="disabled">
+                <i class="icon-circle-arrow-right icon-white"></i> Search
+              </button>
+              <button class="btn" id="contract-search-clear">
+                <i class="icon-remove-sign"></i> Clear
+              </button>
+              <img src="/aqm/core/images/loader_transparent.gif" alt="loading gif" id="contract-search-spinner" />
+            </form> 
+            <div id="contract-not-found" class="alert alert-info">
+              <p>
+                The contract number you entered has not been found to be that of an existing contract in EAV.<br />Would you like to enter a new contract into EAV that uses this number?
+              </p>
+              <button class="btn btn-success" id="enter-new-contract"><i class="icon-arrow-right icon-white"></i> Yes, enter a new contract using this number</button> <button class="btn" id="search-contract-again"><i class="icon icon-search"></i> No, thanks. I want to search again.</button>
+            </div>          
+          </div>
+          <div id="contract-headers">
+            <div id='intro'>
+              <h3>Step 2, The Contract.</h3>
+              <p id="header-intro-text">
+               Here are the details of the contract you searched for.
+              </p>
+            </div>
+            <form action="" class="well form-inline" id="contractHeader">
+              <fieldset id="headers">
+              <div id="contractHeaderFields" class="row">
+                
+                <div class="headerField span2" >
+                  <label for="">
+                    Contract Number:
+                  </label>
+                  <input type="text" name="thecontractnumber" id="thecontractnumber" value="" />
+                </div>
+                <div class="headerField span3">
+                  <label for="">
+                    Vendor:    
+                  </label>
+                  <input type="text" name="vendorid" id="vendorid" value="" /> <button class='btn' id="vendor_id_search_btn" data-toggle="modal" href="#vendorLookupModal"><i class="icon-search"></i></button>
+                </div>
+                <div class="headerField span2">
+                  <label for="">
+                    Aircraft Type:
+                  </label>
+                  <select name="aircraft_type" id="aircraft_type">
+                    <option value="">Select Aircraft Type</option>
+                    <option value="F">Fixed Wings</option>
+                    <option value="H">Helicopters</option>
+                    <option value="T">Air Tankers</option>
+                    <option value="S">Smoke Jumpers</option>
+                    <option value="L">Lead Planes</option>
+                    <option value="A">Aerial Supervision Module</option>
+                  </select>
+                </div>
+                <div class="headerField span3">
+                  <label for="">
+                    Contract Type:
+                  </label>
+                  <select name="contract_type" id="contract_type">
+                    <option value="">Select Contract Type</option>
+                    <option value="CWN">Call When Needed</option>
+                    <option value="EXU">Exclusive Use</option>
+                    <option value="OND">On Demand</option>
+                  </select>
+                </div>
+                
+              </div> 
+              </fieldset>   
+              <fieldset id="contractDates">
+                <div class="row">
+                  <div class="datebox">
+                    <label for="contractStartDate">
+                      Contract Start Date
+                    </label>
+                    <input type="text" name="contractStartDate" id="contractStartDate">
+                  </div>
+                  <div class="datebox">
+                    <label for="baseEndDate">
+                      Base End Date
+                    </label>
+                    <input type="text" name="baseEndDate" id="baseEndDate">
+
+                  </div>
+                  <div class="datebox">
+                    <label for="contractEndDate">
+                      Contract End Date
+                    </label>
+                    <input type="text" name="contractEndDate" id="contractEndDate">
+
+                  </div>
+                </div>
+                <h4 id='timelinetitle'>Timeline</h4>
+                <div id="timeline">
+
+                  <div class="datesegment">
+                    <span class="segmentname">Contract Start Date</span>
+                    <span class="segmentdate" id="timelinestartdate">MM/DD/YYYY</span>
+                  </div>
+                  <div class="datesegment">
+                    <span class="segmentname">Base End Date</span>
+                    <span class="segmentdate" id="timelinebaseenddate">MM/DD/YYYY</span>
+                  </div>
+                  <div class="datesegment">
+                    <span class="segmentname">Contract End Date</span>
+                    <span class="segmentdate" id="timelinecontractenddate">MM/DD/YYYY</span>
+                  </div>
+                </div>
+              </fieldset>
+              <fieldset>
+                <div class="timeslider">
+                  <h4>Unavailability Time Rounding: </h4>
+                  <p>
+                    <span id="slider1mins">0</span> minutes (slide to change)
+                  </p>
+                  <div id="slider1"></div>
+                  <div class="sliderscale">
+                    <span class='slider0'>0</span>
+                    <span class="slider15">15</span>
+                    <span class="slider60">60</span>
+                  </div>
+                </div>
+                <div class="timeslider">
+                  <h4>Standby Time Rounding</h4>
+                  <p>
+                    <span id="slider2mins">0</span> minutes (slide to change)
+                  </p>
+                  <div id="slider2"></div>
+                  <div class="sliderscale">
+                    <span class='slider0'>0</span>
+                    <span class="slider15">15</span>
+                    <span class="slider60">60</span>
+                  </div>
+                </div>
+                <div class="timeslider">
+                  <h4>Extended Standby Time Rounding</h4>
+                  <p>
+                    <span id="slider3mins">0</span> minutes (slide to change)
+                  </p>
+                  <div id="slider3"></div>
+                  <div class="sliderscale">
+                    <span class='slider0'>0</span>
+                    <span class="slider15">15</span>
+                    <span class="slider60">60</span>
+                  </div>
+                </div>
+              </fieldset>  
+              <fieldset id="basediscount">
+                <ul class="nav nav-tabs" id="contract-tabs">
+                  <li class="active">
+                    <a href="#discountoptions" data-toggle="tab">Discount Options</a>
+                  </li>
+                  <li>
+                    <a href="#baserates" data-toggle="tab" id="baserates-tab">Base Contract Rates</a>          
+                  </li>
+                </ul>
+                <div class="tab-content">
+                  <div class="tab-pane active" id="discountoptions">
+                    <div class="discountbox">
+                      <span class="discoutnum">1</span>
+                      <label for="discount1percent">Discount Percent</label>
+                      <input type="text" name="discount1percent" id="discount1percent">
+                      <label for="discount1days"># of Discount Days</label>
+                      <input type="text" name="discount1days" id="discount1days">
+                    </div>
+                      <div class="discountbox">
+                      <span class="discoutnum">2</span>
+                      <label for="discount2percent">Discount Percent</label>
+                      <input type="text" name="discount2percent" id="discount2percent">
+                      <label for="discount2days"># of Discount Days</label>
+                      <input type="text" name="" id="">
+                    </div>
+                      <div class="discountbox">
+                      <span class="discoutnum">3</span>
+                      <label for="discount3percent">Discount Percent</label>
+                      <input type="text" name="discount3percent" id="discount3percent">
+                      <label for="discount2days"># of Discount Days</label>
+                      <input type="text" name="discount2days" id="discount2days">
+                    </div>
+                    <div class="clearboth"></div>
+                  </div>
+                  <div class="tab-pane" id="baserates">                    
+                    <div class="baseratesbox" id="baseratetype">
+                      <label for="selectBaseRate">Select Rate Type</label>
+                      <select name="selectBaseRate" id="selectBaseRate">
+                        <option value="">Select Rate</option>
+                        <option value="ST">ST</option>
+                      </select>                      
+                    </div>
+                    <div class="baseratesbox" id="baseprice">
+                      <label for="baseRatePrice">Price</label>
+                      <input type="text" name="baseRatePrice" id="baseRatePrice">
+                    </div>
+                    <div class="baseratesbox" id="baseratestartdate">
+                      <label for="baseRateEffDate">Effective Date</label>
+                      <input type="text" name="baseRateEffDate" id="baseRateEffDate">
+                    </div>
+                    <div class="baseratesbox" id="baserateenddate">
+                      <label for="baseRateExpDate">Expiration Date</label>
+                      <input type="text" name="baseRateExpDate" id="baseRateExpDate">
+                    </div>
+                    <div class="baseratesbox" id="baseratesbuttons">
+                      <a href='#confirmRateAdd' id="addBaseRateBtn" class="btn btn-primary"><i class="icon-white icon-plus-sign"></i> Add Rate</a>
+                      <button class="btn" id="clearBaseRateBtn"><i class="icon-remove-sign"></i> Clear</button>                
+                    </div>
+
+                    <hr />
+                    <table id="baseratestable" class='table table-bordered table-striped'>
+                      <thead>
+                        <tr>
+                          <th>Rate Type</th>
+                          <th>Price</th>
+                          <th>Effective Date</th>
+                          <th>Expiration Date</th>                          
+                        </tr>
+                      </thead>
+                      <tbody>
+                        
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </fieldset>        
+            </form>
+            <div class="modal fade hide" id="vendorLookupModal">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">x</button>
+                  <h3>Vendor Lookup</h3>
+                </div>
+                <div class="modal-body">
+                  <label for="vendorSearchField">
+                    Enter the name of the Vendor you want to search for:
+                  </label>
+                  <input type="text" id="vendorSearchField" value="" placeholder="Enter Vendor Name" />
+                  <button class='btn' id="vendorSearchBtn">Search</button>
+                  <div id='vendorSearchResults'>
+                    <table class='table table-bordered table-striped table-condensed'>
+                      <tr>
+                        <td id="searchvendorlistname">
+                          
+                        </td>
+                        <td>
+                          <a href="#" class='btn btn-info' id="useVendorBtn"><i class="icon-ok-sign"></i>Use</a>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <a href="#" class="btn" data-dismiss='modal'>Close</a>
+                </div>
+              </div>
+              <div class="modal fade hide" id="remittoLookupModal">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">x</button>
+                  <h3>Remit To VID Lookup</h3>
+                </div>
+                <div class="modal-body">
+                  <label for="vendorSearchField">
+                    Enter the name of the Vendor you want to find the VID for:
+                  </label>
+                  <input type="text" id="vendorSearchField" value="" placeholder="Enter Vendor Name" />
+                  <button class='btn'>Search</button>
+                </div>
+                <div class="modal-footer">
+                  <a href="#" class="btn" data-dismiss='modal'>Close</a>
+                </div>
+              </div>
+              <div class="modal fade hide" id="confirmRateAdd">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h3>Confirm Adding Rate</h3>
+                </div>
+                <div class="modal-body">
+                  <div class="alert">
+                  <p>
+                    Once this rate is added it cannot be edited.
+                  </p>
+                  <p>
+                    Be sure the information is correct before adding the rate. Do you still want to add the rate?
+                  </p>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <a href="#" id="addRateConfirm" class="btn btn-danger">Yes, add this rate</a>
+                  <a href="#" data-dismiss='modal' class="btn secondary">No, don't add this rate</a>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="tab-pane" id="rates">
+          <form action="" class="well form-inline" id="contractHeader">
+              <fieldset id="headers">
+              <div id="TNcontractHeaderFields" class="row">
+                
+                <div class="headerField span2" >
+                  <label for="">
+                    Contract Number:
+                  </label>
+                  <input type="text" name="TNcontractnumber" id="TNcontractnumber" value="" />
+                </div>
+                <div class="headerField span3">
+                  <label for="">
+                    Vendor:    
+                  </label>
+                  <input type="text" name="TNvendorid" id="TNvendorid" value="" />
+                </div>
+              </div>
+            </fieldset>
+            </form>   
+            <div id="tailnumbers">
+              <h3>Tail Numbers</h3> <a href="#tailNumModalForm" data-toggle='modal' id="addTailNumBtn" class="btn btn-mini btn-primary"><i class='icon-white icon-plus-sign'></i> add</a>
+              <ul id="tailnumberlist"></ul>
+            </div>
+            <div class="modal fade hide" id="tailNumModalForm">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">x</button>
+                  <h3>Add Aircraft Tail Number</h3>
+                </div>
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="cell">
+                      <label for="addTailNumField">
+                        Tail Number
+                      </label>
+                      <input type="text" id="addTailNumField" value="" placeholder="Tail Number" />
+                    </div>
+                    <div class="cell">
+                      <label for="tailNumLineNum">
+                        Line Number:
+                      </label>
+                      <input type="text" name="tailNumLineNum" id="tailNumLineNum" />
+                    </div>
+                    <div class="cell">
+                      <label for="tailNumModNum">
+                        Mod Number:
+                      </label>
+                      <input type="text" name="tailNumModNum" id="tailNumModNum">
+                    </div>
+                    <div class="cell">
+                      <label for="tailNumAircraftType">
+                        Aircraft Type
+                      </label>
+                      <select name="" id="tailNumAircraftType">
+                        <option value="">
+                          Select Aircraft Type
+                        </option>
+                        <option value="212">
+                          212
+                        </option>
+                      </select>                      
+                    </div>
+                  </div>
+                    <h4>
+                      Base
+                    </h4>
+                    <div class="row addRateFormFields">
+                      <div class="cell"><label for="baseRate">Rate</label><select name="baseRate" id="baseRate">
+                        <option value="">
+                          Select Rate
+                        </option>
+                        <option value="">
+                          AV - Availability Rate
+                        </option>
+                      </select></div>
+                      <div class="cell"><label for="basePricePerUnit">Price Per Unit</label><input type="text" name="" id="basePricePerUnit"></div>
+                      <div class="cell"><label for="baseRateStart">Rate Start:</label>
+                        <input type="text" name="" id="baseRateStart">
+                      </div>
+                      <div class="cell"><label for="baseRateEnd">Rate End:</label><input type="text" name="" id="baseRateEnd"></div>
+                      <div class="cell"><button class="btn btn-primary btn-small"><i class='icon icon-plus-sign icon-white'></i> Add</button></div>
+                    </div>
+                    <div class="row">
+                      <div class="cell"><button class="btn btn-small addaratebtn" id="baseaddratebtn"><i class="icon icon-plus-sign"></i> add a rate</button></div>
+                    </div>                   
+                </div>
+                <div class="modal-footer">
+                  <a href="#" class="btn btn-primary" id="saveTailNumRatesBtn">Done</a>
+                  <a href="#" class="btn" data-dismiss='modal'>cancel</a>
+                </div>
+              </div>
+        </div>
+        <div class="tab-pane" id="access"> 
+        </div>
+      </div>
+     
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery-1.7.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/date.js"></script>
+    <script src="js/jquery.datepick.min.js"></script>
+    <script src="js/jquery-ui-slider.min.js"></script>
+    <script src="js/core.js"></script>
+    <script src="js/sandbox.js"></script>
+    <script src="js/modules.js"></script>
+
+
+
+  
+
+</body></html>
