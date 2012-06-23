@@ -1,6 +1,6 @@
-body {
+
 	padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-} 
+}
 
 *:focus {
 	outline: 0 !important;
@@ -8,7 +8,7 @@ body {
 
 .clearboth {
 	clear: both;
-} 
+}
 
 .navbar-inner {
 	background-color: #536D89;
@@ -16,20 +16,24 @@ body {
 	border-top: 1px solid #6894C3;
 	border-bottom: 1px solid #000;
 	color: #efefef;
-}  
+}
 
 .navbar .brand,
 .navbar .nav > li > a {
 	color: #efefef;
-}  
+}
 
 .navbar .nav > li > a:hover {
 	background-color: #344960;
 }
 
-.navbar .nav .active > a, 
+.navbar .nav .active > a,
 .navbar .nav .active > a:hover {
 	background-color: #18222D;
+}
+
+.navbar+.container {
+    margin-top: 4em;
 }
 
 .tab-content {
@@ -60,12 +64,12 @@ body {
 
 button i[class^="icon-"], button i[class*=" icon-"] {
 	vertical-align: inherit;
-	margin-top: -4px; 
+	margin-top: -4px;
 }
-   
+
 #contract-search-spinner {
 	display: none;
-} 
+}
 
 form#contract-search-form.inProgress #contract-search-spinner {
 	display: inline;
@@ -245,7 +249,7 @@ color: #ffffff;
   border-color: #2f96b4 #2f96b4 #1f6377;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
   filter: progid:dximagetransform.microsoft.gradient(startColorstr='#5bc0de', endColorstr='#2f96b4', GradientType=0);
-  filter: progid:dximagetransform.microsoft.gradient(enabled=false);          
+  filter: progid:dximagetransform.microsoft.gradient(enabled=false);
 }
 
 .ui-state-hover, .ui-state-active, .ui-state-focus {
@@ -254,7 +258,7 @@ color: #ffffff;
   background-color: #24748c \9;
   outline: 0;
   cursor: url('/aqm/core/images/grab_hand.png'),auto;
-  
+
 }
 
 .ui-state-hover {
@@ -270,7 +274,7 @@ color: #ffffff;
       -ms-transition: background-position 0.1s linear;
        -o-transition: background-position 0.1s linear;
           transition: background-position 0.1s linear;
-   cursor: url('/aqm/core/images/grab_hand.png'),auto;     
+   cursor: url('/aqm/core/images/grab_hand.png'),auto;
 }
 
 .ui-state-active {
@@ -331,7 +335,6 @@ color: #ffffff;
 .discountbox {
 	width: 33%;
 	float: left;
-	text-align: center;
 	overflow: hidden;
 	position: relative;
 }
@@ -350,7 +353,7 @@ color: #ffffff;
 }
 
 .discountbox input {
-	margin-left: -5.5em;
+	margin-left: 2.5em;
 }
 
 #baserates {
@@ -396,9 +399,19 @@ color: #ffffff;
 	width: 100%;
 }
 
+#vendorSearchResults #searchvendorlistname {
+    padding-left: 1em;
+    vertical-align: middle;
+}
+
 #vendorSearchResults table tr>td+td {
 	background-color: #fff;
 	border-width: 0 0 0 1px;
+    width: 64px;
+}
+
+a#useVendorBtn i{
+        margin-top: 1px;
 }
 
 #TNcontractnumber, #TNvendorid {
@@ -409,7 +422,7 @@ color: #ffffff;
 
 #rates #contractHeader fieldset#headers {
 	padding-bottom: 0em;
-	margin-bottom: 0;	
+	margin-bottom: 0;
 }
 
 #tailnumbers {

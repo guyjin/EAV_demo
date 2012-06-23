@@ -13,7 +13,7 @@
     <link  href="css/redmond/jquery-ui-1.8.21.custom.css" rel="stylesheet">
     <link href="css/eav.css" rel="stylesheet">
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
-    
+
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -57,7 +57,7 @@
           <a href="#contract" data-toggle="tab" id="contract-tab">Contract</a>
         </li>
         <li class="inactive">
-          <a href="#rates" data-toggle="tab" id="rates-tab">Rates</a>          
+          <a href="#rates" data-toggle="tab" id="rates-tab">Rates</a>
         </li>
         <li class="inactive">
           <a href="#access" data-toggle="tab" id="access-tab">Access</a>
@@ -83,14 +83,14 @@
               <button class="btn" id="contract-search-clear">
                 <i class="icon-remove-sign"></i> Clear
               </button>
-              <img src="/aqm/core/images/loader_transparent.gif" alt="loading gif" id="contract-search-spinner" />
-            </form> 
+              <img src="/img/loader_transparent.gif" alt="loading gif" id="contract-search-spinner" />
+            </form>
             <div id="contract-not-found" class="alert alert-info">
               <p>
                 The contract number you entered has not been found to be that of an existing contract in EAV.<br />Would you like to enter a new contract into EAV that uses this number?
               </p>
               <button class="btn btn-success" id="enter-new-contract"><i class="icon-arrow-right icon-white"></i> Yes, enter a new contract using this number</button> <button class="btn" id="search-contract-again"><i class="icon icon-search"></i> No, thanks. I want to search again.</button>
-            </div>          
+            </div>
           </div>
           <div id="contract-headers">
             <div id='intro'>
@@ -102,7 +102,7 @@
             <form action="" class="well form-inline" id="contractHeader">
               <fieldset id="headers">
               <div id="contractHeaderFields" class="row">
-                
+
                 <div class="headerField span2" >
                   <label for="">
                     Contract Number:
@@ -111,7 +111,7 @@
                 </div>
                 <div class="headerField span3">
                   <label for="">
-                    Vendor:    
+                    Vendor:
                   </label>
                   <input type="text" name="vendorid" id="vendorid" value="" /> <button class='btn' id="vendor_id_search_btn" data-toggle="modal" href="#vendorLookupModal"><i class="icon-search"></i></button>
                 </div>
@@ -140,9 +140,9 @@
                     <option value="OND">On Demand</option>
                   </select>
                 </div>
-                
-              </div> 
-              </fieldset>   
+
+              </div>
+              </fieldset>
               <fieldset id="contractDates">
                 <div class="row">
                   <div class="datebox">
@@ -220,14 +220,14 @@
                     <span class="slider60">60</span>
                   </div>
                 </div>
-              </fieldset>  
+              </fieldset>
               <fieldset id="basediscount">
                 <ul class="nav nav-tabs" id="contract-tabs">
                   <li class="active">
                     <a href="#discountoptions" data-toggle="tab">Discount Options</a>
                   </li>
                   <li>
-                    <a href="#baserates" data-toggle="tab" id="baserates-tab">Base Contract Rates</a>          
+                    <a href="#baserates" data-toggle="tab" id="baserates-tab">Base Contract Rates</a>
                   </li>
                 </ul>
                 <div class="tab-content">
@@ -255,13 +255,13 @@
                     </div>
                     <div class="clearboth"></div>
                   </div>
-                  <div class="tab-pane" id="baserates">                    
+                  <div class="tab-pane" id="baserates">
                     <div class="baseratesbox" id="baseratetype">
                       <label for="selectBaseRate">Select Rate Type</label>
                       <select name="selectBaseRate" id="selectBaseRate">
                         <option value="">Select Rate</option>
                         <option value="ST">ST</option>
-                      </select>                      
+                      </select>
                     </div>
                     <div class="baseratesbox" id="baseprice">
                       <label for="baseRatePrice">Price</label>
@@ -277,7 +277,7 @@
                     </div>
                     <div class="baseratesbox" id="baseratesbuttons">
                       <a href='#confirmRateAdd' id="addBaseRateBtn" class="btn btn-primary"><i class="icon-white icon-plus-sign"></i> Add Rate</a>
-                      <button class="btn" id="clearBaseRateBtn"><i class="icon-remove-sign"></i> Clear</button>                
+                      <button class="btn" id="clearBaseRateBtn"><i class="icon-remove-sign"></i> Clear</button>
                     </div>
 
                     <hr />
@@ -287,16 +287,16 @@
                           <th>Rate Type</th>
                           <th>Price</th>
                           <th>Effective Date</th>
-                          <th>Expiration Date</th>                          
+                          <th>Expiration Date</th>
                         </tr>
                       </thead>
                       <tbody>
-                        
+
                       </tbody>
                     </table>
                   </div>
                 </div>
-              </fieldset>        
+              </fieldset>
             </form>
             <div class="modal fade hide" id="vendorLookupModal">
                 <div class="modal-header">
@@ -313,10 +313,10 @@
                     <table class='table table-bordered table-striped table-condensed'>
                       <tr>
                         <td id="searchvendorlistname">
-                          
+
                         </td>
                         <td>
-                          <a href="#" class='btn btn-info' id="useVendorBtn"><i class="icon-ok-sign"></i>Use</a>
+                          <a href="#" class='btn btn-info' id="useVendorBtn"><i class="icon-ok-sign"></i> Use</a>
                         </td>
                       </tr>
                     </table>
@@ -368,7 +368,7 @@
           <form action="" class="well form-inline" id="contractHeader">
               <fieldset id="headers">
               <div id="TNcontractHeaderFields" class="row">
-                
+
                 <div class="headerField span2" >
                   <label for="">
                     Contract Number:
@@ -377,13 +377,13 @@
                 </div>
                 <div class="headerField span3">
                   <label for="">
-                    Vendor:    
+                    Vendor:
                   </label>
                   <input type="text" name="TNvendorid" id="TNvendorid" value="" />
                 </div>
               </div>
             </fieldset>
-            </form>   
+            </form>
             <div id="tailnumbers">
               <h3>Tail Numbers</h3> <a href="#tailNumModalForm" data-toggle='modal' id="addTailNumBtn" class="btn btn-mini btn-primary"><i class='icon-white icon-plus-sign'></i> add</a>
               <ul id="tailnumberlist"></ul>
@@ -424,7 +424,7 @@
                         <option value="212">
                           212
                         </option>
-                      </select>                      
+                      </select>
                     </div>
                   </div>
                     <h4>
@@ -448,7 +448,7 @@
                     </div>
                     <div class="row">
                       <div class="cell"><button class="btn btn-small addaratebtn" id="baseaddratebtn"><i class="icon icon-plus-sign"></i> add a rate</button></div>
-                    </div>                   
+                    </div>
                 </div>
                 <div class="modal-footer">
                   <a href="#" class="btn btn-primary" id="saveTailNumRatesBtn">Done</a>
@@ -456,10 +456,10 @@
                 </div>
               </div>
         </div>
-        <div class="tab-pane" id="access"> 
+        <div class="tab-pane" id="access">
         </div>
       </div>
-     
+
     </div> <!-- /container -->
 
     <!-- Le javascript
@@ -476,6 +476,6 @@
 
 
 
-  
+
 
 </body></html>
