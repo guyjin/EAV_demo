@@ -83,7 +83,7 @@
               <button class="btn" id="contract-search-clear">
                 <i class="icon-remove-sign"></i> Clear
               </button>
-              <img src="/img/loader_transparent.gif" alt="loading gif" id="contract-search-spinner" />
+              <img src="img/loader_transparent.gif" alt="loading gif" id="contract-search-spinner" />
             </form>
             <div id="contract-not-found" class="alert alert-info">
               <p>
@@ -369,7 +369,7 @@
               <fieldset id="headers">
               <div id="TNcontractHeaderFields" class="row">
 
-                <div class="headerField span2" >
+                <div class="headerField" >
                   <label for="">
                     Contract Number:
                   </label>
@@ -385,6 +385,10 @@
             </fieldset>
             </form>
             <div id="tailnumbers">
+              <div class='alert alert-block alert-info'>
+                
+                  <div><strong>Getting started:</strong> To add Option Rates, first begin by entering a tail number, then adding the rates for the Option as necessary.<br />Start by clicking the <strong>'add'</strong> button below.</div>
+              </div>
               <h3>Tail Numbers</h3> <a href="#tailNumModalForm" data-toggle='modal' id="addTailNumBtn" class="btn btn-mini btn-primary"><i class='icon-white icon-plus-sign'></i> add</a>
               <ul id="tailnumberlist"></ul>
             </div>
@@ -394,18 +398,15 @@
                   <h3>Add Aircraft Tail Number</h3>
                 </div>
                 <div class="modal-body">
+                  <div class="alert alert-info">
+                    Enter the information for an aircraft here.
+                  </div>
                   <div class="row">
                     <div class="cell">
                       <label for="addTailNumField">
                         Tail Number
                       </label>
                       <input type="text" id="addTailNumField" value="" placeholder="Tail Number" />
-                    </div>
-                    <div class="cell">
-                      <label for="tailNumLineNum">
-                        Line Number:
-                      </label>
-                      <input type="text" name="tailNumLineNum" id="tailNumLineNum" />
                     </div>
                     <div class="cell">
                       <label for="tailNumModNum">

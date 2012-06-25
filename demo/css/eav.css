@@ -100,13 +100,30 @@ form#contractHeader label:after {
     clear: both;
 }
 
+#contractHeaderFields div.headerField:nth-child(3){
+	width: 170px;
+}
+
+#contractHeaderFields #aircraft_type {
+	width: 13em;
+}
+
+#contractHeaderFields #thecontractnumber {
+	width: 9.5em;
+}
+
+.headerField {
+	float: left;
+	overflow: hidden;
+}
+
 .headerField:first-child {
     margin-left: 0;
 }
 
-.headerField input[type=text],
-.headerField select {
-	width: 100%;
+.headerField label {
+	width: auto !important;
+	display: block;
 }
 
 .headerField #vendorid,
@@ -399,6 +416,10 @@ color: #ffffff;
 	margin-left: 1em;
 }
 
+#baseratesbuttons a#addBaseRateBtn.btn {
+	margin-left: 0;
+}
+
 #baseratestable {
 	display: none;
 	clear: both;
@@ -434,6 +455,9 @@ a#useVendorBtn i{
 	border: none;
 	background-color: transparent;
 	box-shadow: none;
+	font-size: 22px;
+	font-weight: bold;
+	padding-left: 0;
 }
 
 #rates #contractHeader fieldset#headers {
@@ -444,17 +468,19 @@ a#useVendorBtn i{
 #tailnumbers {
 	overflow: hidden;
 	margin-bottom: 1em;
+	position: relative;
 }
 
-#tailnumbers h3, #tailnumbers button#addTailNumBtn {
-	float: left;
+#tailnumbers h3 {
+	border-bottom: 2px groove #fff;
+	margin-bottom: 8px;
 }
 
-#tailnumbers a#addTailNumBtn {
-	margin-left: 1em;
-	margin-top: 3px;
+#tailnumbers a#addTailNumBtn.btn {
+	position: absolute;
+	left: 11em;
+	top: 7.75em;
 }
-
 
 #tailnumbers a#addTailNumBtn i{
 	margin-top: 0px;
@@ -469,7 +495,8 @@ a#useVendorBtn i{
 }
 
 div#rates.tab-pane #tailNumModalForm {
-	width: 1060px;
+	width: auto;
+	min-width: 952px;
 	left: 30.5%;
 	top: 300px;
 }
@@ -515,6 +542,10 @@ div#tailNumModalForm button i {
 	margin-bottom: 0;
 }
 
+.addRateFormFields .cell:nth-child(2) input {
+	width: 10em;
+}
+
 .lineRatesTable {
 	display: none;
 }
@@ -523,4 +554,19 @@ div#tailNumModalForm button i {
 	clear: both;
 	font-weight: bold;
 	text-transform: uppercase;
+	list-style-type: none;
+	margin-left: 0;
+	overflow: hidden;
+}
+
+#tailnumberlist li {
+	float: left;
+	clear: left;
+	display: inline-block;
+	margin-bottom: 0.5em;
+	padding-left: 5px;
+}
+
+#tailnumberlist li i {
+	margin-top: 1px;
 }

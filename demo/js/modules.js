@@ -461,7 +461,7 @@
 			},
 			addTailNumOptions : function(years){
 				$('.addaratebtn').unbind('click');
-				$('#tailNumModalForm .modal-body').empty().append('<div class="row"><div class="cell"><label for="addTailNumField">Tail Number</label><input type="text" id="addTailNumField" value="" placeholder="Tail Number" /></div><div class="cell"><label for="tailNumLineNum">Line Number:</label><input type="text" name="tailNumLineNum" id="tailNumLineNum" /></div><div class="cell"><label for="tailNumModNum">Mod Number:</label><input type="text" name="tailNumModNum" id="tailNumModNum"></div><div class="cell"><label for="tailNumAircraftType">Aircraft Type</label><select name="" id="tailNumAircraftType"><option value="">Select Aircraft Type</option><option value="212">212</option></select></div></div><h4>Base</h4><table class="table table-bordered table-striped table-condensed lineRatesTable"><thead><tr class="lineRateHeader"><th>Rate</th><th>Price Per Unit</th><th>Rate Start Date</th><th>Rate End Date</th></tr></thead><tbody></tbody></table><div class="row addRateFormFields"><div class="cell"><label for="baseRate">Rate</label><select id="baseRate" name="baseRate"><option value="">Select Rate</option><option value="av">AV - Availability Rate</option></select></div><div class="cell"><label for="basePricePerUnit">Price Per Unit</label><input type="text" id="basePricePerUnit" name=""></div><div class="cell"><label for="baseRateStart">Rate Start:</label><input type="text" id="baseRateStart" name=""></div><div class="cell"><label for="baseRateEnd">Rate End:</label><input type="text" id="baseRateEnd" name=""></div><div class="cell"><button class="AddOptionRateButton btn btn-primary btn-small"><i class="icon icon-plus-sign icon-white"></i> Add</button></div></div><div class="row"><div class="cell"><button class="btn btn-small addaratebtn" id="baseaddratebtn"><i class="icon icon-plus-sign"></i> add a rate</button></div></div>');
+				$('#tailNumModalForm .modal-body').empty().append('<div class="row"><div class="cell"><label for="addTailNumField">Tail Number</label><input type="text" id="addTailNumField" value="" placeholder="Tail Number" /></div><div class="cell"><label for="tailNumModNum">Mod Number:</label><input type="text" name="tailNumModNum" id="tailNumModNum"></div><div class="cell"><label for="tailNumAircraftType">Aircraft Type</label><select name="" id="tailNumAircraftType"><option value="">Select Aircraft Type</option><option value="212">212</option></select></div></div><h4>Base</h4><table class="table table-bordered table-striped table-condensed lineRatesTable"><thead><tr class="lineRateHeader"><th>Rate</th><th>Price Per Unit</th><th>Rate Start Date</th><th>Rate End Date</th></tr></thead><tbody></tbody></table><div class="row addRateFormFields"><div class="cell"><label for="baseRate">Rate</label><select id="baseRate" name="baseRate"><option value="">Select Rate</option><option value="av">AV - Availability Rate</option></select></div><div class="cell"><label for="basePricePerUnit">Price Per Unit</label><input type="text" id="basePricePerUnit" name=""></div><div class="cell"><label for="baseRateStart">Rate Start:</label><input type="text" id="baseRateStart" name=""></div><div class="cell"><label for="baseRateEnd">Rate End:</label><input type="text" id="baseRateEnd" name=""></div><div class="cell"><button class="AddOptionRateButton btn btn-primary btn-small"><i class="icon icon-plus-sign icon-white"></i> Add</button></div></div><div class="row"><div class="cell"><button class="btn btn-small addaratebtn" id="baseaddratebtn"><i class="icon icon-plus-sign"></i> add a rate</button></div></div>');
 				for(i=1; i<=years; i++){
 					$('#tailNumModalForm .modal-body').append('<h4>Option '+i+'</h4><table class="table table-bordered table-striped table-condensed lineRatesTable"><thead><tr class="lineRateHeader"><th>Rate</th><th>Price Per Unit</th><th>Rate Start Date</th><th>Rate End Date</th></tr></thead><tbody></tbody></table><div class="row addRateFormFields"><div class="cell"><label for="option'+i+'Rate">Rate</label><select id="option'+i+'Rate" name="option'+i+'Rate"><option value="">Select Rate</option><option value="av">AV - Availability Rate</option></select></div><div class="cell"><label for="option'+i+'PricePerUnit">Price Per Unit</label><input type="text" id="option'+i+'PricePerUnit" name=""></div><div class="cell"><label for="option'+i+'RateStart">Rate Start:</label><input type="text" id="option'+i+'RateStart" name="" value="'+$('#option'+i+' .segmentdate').text()+'"></div><div class="cell"><label for="option'+i+'RateEnd">Rate End:</label><input type="text" id="option'+i+'RateEnd" value="'+$('#option'+i+' .segmentenddate').text()+'"></div><div class="cell"><button class="AddOptionRateButton btn btn-primary btn-small"><i class="icon icon-plus-sign icon-white"></i> Add</button></div></div><div class="row"><div class="cell"><button class="btn btn-small addaratebtn"><i class="icon icon-plus-sign"></i> add a rate</button></div></div>');
 				}
@@ -531,11 +531,10 @@
 			saveTailNumRates : function(){
 				var tail = new Array();
 				tail[0] = $('#addTailNumField').val();
-				tail[1] = $('#tailNumLineNum').val();
-				tail[2] = $('#tailNumModNum').val();
-				tail[3] = $('#tailNumAircraftType').val();
+				tail[1] = $('#tailNumModNum').val();
+				tail[2] = $('#tailNumAircraftType').val();
 
-				for(i=0;i<3;i++){
+				for(i=0;i<2;i++){
 					if(tail[i] == ""){
 						alert('Please be sure all the Tail Number fields are filled in before finishing.');
 						return false;
@@ -547,11 +546,16 @@
 					return false;
 				}
 
-				$('#tailnumberlist').append("<li>" + tail[0] + " (" + $('.lineRateEntry').length + ")");
+				var plural = '';
+
+				if($('.lineRateEntry').length > 1){
+					plural = 's';
+				}
+
+				$('#tailnumberlist').append("<li class='btn btn-success'><i class='icon icon-plane icon-white'></i> " + tail[0] + " (" + $('.lineRateEntry').length + " rate"+ plural +")");
 
 				$('#tailNumModalForm').modal('hide');
 				$('#addTailNumField').val('');
-				$('#tailNumLineNum').val('');
 				$('#tailNumModNum').val('');
 				$('#tailNumAircraftType').val('');
 				$('.lineRatesTable tbody').empty();
@@ -563,7 +567,6 @@
 			cancelAddTailNumber : function(){
 				$('#tailNumModalForm').modal('hide');
 				$('#addTailNumField').val('');
-				$('#tailNumLineNum').val('');
 				$('#tailNumModNum').val('');
 				$('#tailNumAircraftType').val('');
 				$('.lineRatesTable tbody').empty();
