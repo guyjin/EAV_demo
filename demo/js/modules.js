@@ -11,7 +11,7 @@
 				// Contract tab can always accept a click;
 				sb.addEvent(contracts, 'click', this.handleContract);
 				// Make sure clicks on disabled tabs don't do anything to begin with.
-				sb.addEvent(rates, 'click', this.falseClick);  
+				sb.addEvent(rates, 'click', this.falseClick);
 				sb.addEvent(access, 'click', this.falseClick);
 
 				// listen for messages from the forms to know when to enable the tabs.
@@ -71,11 +71,11 @@
 				sb.addEvent(searchagainbtn,'click',this.clearSearch);
 				sb.addEvent(continuebtn,'click',this.moveToNewContract);
 				sb.addEvent(input, 'change keyup keydown blur', this.checkFormat);
-				sb.listen({  
-		            'perform-contract-search' : this.contractSearch,  
+				sb.listen({
+		            'perform-contract-search' : this.contractSearch,
 		            'contract-search-verdict' : this.showResult
 		        });
-		        input.value = ''; 
+		        input.value = '';
 
 			},
 			destroy: function() {
@@ -86,7 +86,7 @@
 			},
 			startSearch: function(){
 				if(input.value != ""){
-					sb.addClass(form,'inProgress');			
+					sb.addClass(form,'inProgress');
 					var query = input.value;
 					if(query){
 						sb.notify({
@@ -98,7 +98,7 @@
 				} else {
 					return false;
 				}
-										
+
 			},
 			clearSearch: function(){
 				input.value='';
@@ -106,12 +106,12 @@
 					type: 'quit-contract-search',
 					data: null
 				});
-				sb.removeClass(form,'inProgress');				
+				sb.removeClass(form,'inProgress');
 				sb.addClass(button,'disabled');
-				sb.disable(button);	
+				sb.disable(button);
 				if($('#contract-not-found').css('display') == 'block'){
 					$('#contract-not-found').slideUp('slow');
-				}			
+				}
 				return false;
 			},
 			contractSearch : function(query) {
@@ -123,7 +123,7 @@
 				sb.notify({
 					type: 'contract-search-verdict',
 					data: verdict
-				}); 
+				});
 			},
 			showResult : function(verdict) {
 				if(verdict == 'true'){
@@ -135,25 +135,25 @@
 				} else {
 					$('#contract-not-found').fadeIn('slow');
 				};
-				sb.removeClass(form,'inProgress');				
+				sb.removeClass(form,'inProgress');
 			},
 			checkFormat: function(){
 				var contract = input.value;
 				var reg = /[A-Z]{2}-[A-Z0-9]{4}-[A-Z]-[0-9]{2}-[0-9]{4}/gi;
-				if(contract.search(reg) == -1){					
+				if(contract.search(reg) == -1){
 					sb.disable(button);
 				} else {
 					sb.enable(button);
-				}				
+				}
 			},
 			moveToNewContract : function(){
 				$('#contract-search-box').hide();
 				sb.notify({
 					type: 'enter-a-new-contract',
-					data: number					
+					data: number
 				});
 			}
-			
+
 
 		};
 	});
@@ -191,6 +191,7 @@
 				vendorSearchBtn = sb.find('#vendorSearchBtn')[0];
 				useVendorBtn = sb.find('#useVendorBtn')[0];
 				addBaseRateBtn = sb.find('#addBaseRateBtn')[0];
+				vendorSearchField = sb.find('#vendorSearchField')[0];
 
 				sb.addEvent(contracttype, 'change', this.activateRatesTab);
 
@@ -200,10 +201,14 @@
 				sb.addEvent(addBaseRateBtn, 'click', this.addBaseRate);
 
 				sb.addEvent(vendorSearchBtn, 'click', this.populateVendorResults);
+
+				sb.addEvent(vendorSearchField, 'keyup', this.checkVendorSearchKeyStroke);
+
 				sb.addEvent(vendorid, 'change keyup blur keydown', this.populateVendorResults);
 
 				sb.addEvent(useVendorBtn, 'click', this.useVendor);
-				
+
+
 				sb.listen({
 					'enter-a-new-contract' : this.showNewHeaderForm,
 					'view-existing-contract' : this.showFilledHeaderForm,
@@ -211,7 +216,8 @@
 					'options-set' : this.addTailNumOptions,
 					'add-line-rate' : this.addLineRate,
 					'add-tail-number' : this.saveTailNumRates,
-					'cancel-add-tail-number' : this.cancelAddTailNumber
+					'cancel-add-tail-number' : this.cancelAddTailNumber,
+					'vendor-enter-pressed' : this.populateVendorResults
 				});
 
 				//Directly calling the Calendar Popup plugin.
@@ -248,7 +254,7 @@
 					} else {
 						return $('#slider1').slider("value");
 					}
-				});		
+				});
 
 				$('#slider2').slider({
 					value:00,
@@ -292,13 +298,13 @@
 						$('.addRateFormFields:visible').removeClass('open').slideUp('fast',function(){
 							$(that).parent().parent('.row').prev('.addRateFormFields').slideDown('slow',function(){
 								$(this).addClass('open');
-							});					
+							});
 						})
 					} else {
 						$(that).parent().parent('.row').prev('.addRateFormFields').slideDown('slow',function(){
 							$(this).addClass('open');
 						});
-					}				
+					}
 				});
 
 				$('#saveTailNumRatesBtn').click(function(){
@@ -316,7 +322,7 @@
 				})
 			},
 			destroy : function(){
- 				
+
 			},
 			activateRatesTab : function(){
 				$('#rates-tab').unbind('click', this.falseClick);
@@ -338,7 +344,7 @@
 			updateContractStartDate : function(){
 				stdt = contractstartdate.value;
 				$('#timelinestartdate').empty().text(stdt);
-				$('#baseRateStart').empty().val(stdt);				
+				$('#baseRateStart').empty().val(stdt);
 			},
 			updateBaseEndDate : function(){
 				bedt = baseenddate.value;
@@ -371,9 +377,9 @@
 
 				// find the difference between the dates and convert it from milliseconds to years, but we need to round it.
 				var years = Math.round(Math.abs((newcontractenddate - newbaseenddate))/oneday/365) ;
-				
 
-				// Find the total number of timeline segments to be displayed.  
+
+				// Find the total number of timeline segments to be displayed.
 				var divisor = years + 3;  //startdate/baseend/contractend + options
 				var size = 100/divisor;
 				$('.datesegment.option').remove();
@@ -392,8 +398,8 @@
 					type: 'options-set',
 					data: years
 				})
-				
-			}, 
+
+			},
 			addBaseRate : function (){
 				var valid = 'false';
 				$('.baseratesbox input').each(function(){
@@ -419,7 +425,7 @@
 					var expdate = $('#baseRateExpDate').val();
 					if($('#baseratestable').css('display') == 'none'){
 						$('#baseratestable').fadeIn();
-					}					
+					}
 					$('#baseratestable tbody').append('<tr><td>'+type+'</td><td>' + price + '</td><td>' + effdate + '</td><td>' + expdate + '</td></tr>');
 					return false;
 				} else {
@@ -427,20 +433,30 @@
 					alert("Not all of the Base Contract Rates have been filled.  Please fill them and retry your submission.");
 					return false;
 				}
-				
+
 			},
 			clearBaseRate : function (){
 				$('#baserates input').val('');
 				$('#selectBaseRate').val('');
 				return false;
 			},
-			populateVendorResults : function(){ 
+			checkVendorSearchKeyStroke : function (e){
+				var code = (e.keyCode ? e.keyCode : e.which);
+				if(code == 13){
+					sb.notify({
+						type: 'vendor-enter-pressed',
+						data: null
+					})
+				}
+			},
+			populateVendorResults : function(){
 				$('#searchvendorlistname').text($('#vendorSearchField').val());
 				$('#TNvendorid').val($('#vendorid').val());
 				$('#vendorSearchResults').fadeIn();
 			},
 			useVendor : function(){
 				$('#vendorid').val($('#searchvendorlistname').text());
+				$('#TNvendorid').val($('#vendorid').val());
 				$('#vendorLookupModal').modal('hide');
 			},
 			addTailNumOptions : function(years){
@@ -450,10 +466,10 @@
 					$('#tailNumModalForm .modal-body').append('<h4>Option '+i+'</h4><table class="table table-bordered table-striped table-condensed lineRatesTable"><thead><tr class="lineRateHeader"><th>Rate</th><th>Price Per Unit</th><th>Rate Start Date</th><th>Rate End Date</th></tr></thead><tbody></tbody></table><div class="row addRateFormFields"><div class="cell"><label for="option'+i+'Rate">Rate</label><select id="option'+i+'Rate" name="option'+i+'Rate"><option value="">Select Rate</option><option value="av">AV - Availability Rate</option></select></div><div class="cell"><label for="option'+i+'PricePerUnit">Price Per Unit</label><input type="text" id="option'+i+'PricePerUnit" name=""></div><div class="cell"><label for="option'+i+'RateStart">Rate Start:</label><input type="text" id="option'+i+'RateStart" name="" value="'+$('#option'+i+' .segmentdate').text()+'"></div><div class="cell"><label for="option'+i+'RateEnd">Rate End:</label><input type="text" id="option'+i+'RateEnd" value="'+$('#option'+i+' .segmentenddate').text()+'"></div><div class="cell"><button class="AddOptionRateButton btn btn-primary btn-small"><i class="icon icon-plus-sign icon-white"></i> Add</button></div></div><div class="row"><div class="cell"><button class="btn btn-small addaratebtn"><i class="icon icon-plus-sign"></i> add a rate</button></div></div>');
 				}
 
-				$('#baseRateStart').val($('#contractStartDate').val());	
+				$('#baseRateStart').val($('#contractStartDate').val());
 				$('#baseRateEnd').val($('#baseEndDate').val());
 
-				for(i=1; i<=years; i++){ 
+				for(i=1; i<=years; i++){
 
 				}
 
@@ -461,10 +477,10 @@
 				$('.addaratebtn').click(function(){
 					var that = this;
 					if($('.addRateFormFields:visible').length > 0){
-						$('.addRateFormFields:visible').removeClass('open').slideUp('fast',function(){							
+						$('.addRateFormFields:visible').removeClass('open').slideUp('fast',function(){
 							$(that).parent().parent('.row').prev('.addRateFormFields').slideDown('slow',function(){
 								$(this).addClass('open');
-							});					
+							});
 						})
 					} else {
 						$(that).parent().parent('.row').prev('.addRateFormFields').slideDown('slow',function(){
@@ -472,7 +488,7 @@
 							});
 
 					}
-				});			
+				});
 
 				$('.AddOptionRateButton').click(function(){
 					if($(this).hasClass('disabled')){
@@ -481,8 +497,8 @@
 						sb.notify({
 							type: "add-line-rate",
 							data: null
-						});						
-					}					
+						});
+					}
 				});
 
 			},
@@ -558,7 +574,7 @@
 			}
 		}
 	});
-	
+
 
 
 CORE.start_all();

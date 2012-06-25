@@ -96,6 +96,13 @@ form#contractHeader label {
 	font-weight: bold;
 	width: 100%;
 }
+form#contractHeader label:after {
+    clear: both;
+}
+
+.headerField:first-child {
+    margin-left: 0;
+}
 
 .headerField input[type=text],
 .headerField select {
@@ -104,7 +111,7 @@ form#contractHeader label {
 
 .headerField #vendorid,
 .headerField #remitto {
-	width: 70%;
+	width: 77%;
 }
 
 .modal-body button.btn {
@@ -126,7 +133,7 @@ button.trigger {
 }
 
 .datebox:first-child {
-	margin-left: 1.5em;
+	margin-left: 0;
 }
 
 .datebox {
@@ -361,22 +368,31 @@ color: #ffffff;
 	overflow: hidden;
 }
 
+#baserates label {
+    display: block;
+    width: auto;
+
+}
+
 .baseratesbox {
 	float: left;
-	width: 20%;
+	width: auto;
+    margin-right: 15px
 }
 
 .baseratesbox input, .baseratesbox select {
-	width: 90%
+	width: auto
 }
 
 #baseratestartdate input, #baserateenddate input {
-	width: 75%;
+	width: 120px;
 	margin-right: 0.25em;
 }
 
 #baseratesbuttons {
 	margin-top: 1.7em;
+    margin-right: 0;
+    white-space: nowrap;
 }
 
 #baseratesbuttons .btn {
