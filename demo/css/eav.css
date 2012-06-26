@@ -401,6 +401,10 @@ color: #ffffff;
 	width: auto
 }
 
+.baseratesbox input#baseRatePrice {
+	width: 8em;
+}
+
 #baseratestartdate input, #baserateenddate input {
 	width: 120px;
 	margin-right: 0.25em;
