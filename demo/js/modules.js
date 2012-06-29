@@ -181,7 +181,10 @@ CORE.create_module("contract-headers", function(sb){
 			timelinestartdate = sb.find('#timelinestartdate')[0];
 			timelinebaseenddate = sb.find('#timelinebaseenddate')[0];
 			timelinecontractenddate = sb.find('#timelinecontractenddate')[0];
-			saveTailNumRatesBtn = sb.find('#saveTailNumRatesBtn')[0];
+			saveTailNumRatesBtn = sb.find('#saveTailNumRatesBtn')[0];			
+			vendorIDSearchBtn = sb.find('#vendor_id_search_btn')[0];
+
+
 			slider1 = sb.find('#slider1')[0];
 			slider2 = sb.find('#slider2')[0];
 			slider3 = sb.find('#slider3')[0];
@@ -192,8 +195,6 @@ CORE.create_module("contract-headers", function(sb){
 			useVendorBtn = sb.find('#useVendorBtn')[0];
 			
 			vendorSearchField = sb.find('#vendorSearchField')[0];
-
-			sb.addEvent(contracttype, 'change', this.activateRatesTab);
 
 			sb.addEvent(contractstartdate,'blur change keydown keyup', this.updateContractStartDate);
 			
@@ -214,6 +215,7 @@ CORE.create_module("contract-headers", function(sb){
 				'view-existing-contract' : this.showFilledHeaderForm,
 				'contract-end-date-set' : this.computeOptions,
 				'options-set' : this.addTailNumOptions,
+				'option-set-finished' : this.activateRatesTab,
 				'add-line-rate' : this.addLineRate,
 				'add-tail-number' : this.saveTailNumRates,
 				'cancel-add-tail-number' : this.cancelAddTailNumber,
@@ -228,7 +230,9 @@ CORE.create_module("contract-headers", function(sb){
 
 			$('#contractEndDate').datepick({showOnFocus: true, showTrigger:'<button  type="button" id="pickcontractenddatebtn" class="btn btn-info trigger">'+'<i class="icon-calendar icon-white"></i>'+'</button>', showAnim: 'slideDown',dateFormat: 'mm/dd/yyyy',onSelect: this.updateContractEndDate});
 
-			
+			$('#vendorLookupModal').on('shown', function() {
+				$('#vendorSearchField').focus();
+			})
 
 			$('#slider1').slider({
 				value:00,
@@ -459,6 +463,11 @@ CORE.create_module("contract-headers", function(sb){
 				}
 			});
 
+			sb.notify({
+				type: 'option-set-finished',
+				data: null
+			})
+
 		},
 		addLineRate : function(){
 			var newRate = new Array();
@@ -510,7 +519,21 @@ CORE.create_module("contract-headers", function(sb){
 				plural = 's';
 			}
 
-			$('#tailnumberlist').append("<li class='btn btn-success'><i class='icon icon-plane icon-white'></i> " + tail[0] + " (" + $('.lineRateEntry').length + " rate"+ plural +")");
+			var tailnumbertable = "<table class='table table-condensed table-striped table-bordered'><thead><tr><th>Tail Number</th><th>Mod Number</th><th>Aircraft Type</th></tr></thead><tbody><tr><td>"+tail[0]+"</td><td>"+tail[1]+"</td><td>"+tail[2]+"</td></tr></tbody></table>";
+
+			var ratetableHead = "<table class='table table-condensed table-striped table-bordered'><thead><tr><th>Rate</th><th>Price Per Unit</th><th>Rate Start Date</th><th>Rate End Date</th></tr></thead><tbody>";
+			var ratetableBody = '';
+			var ratetableTail = "</tbody></table>";
+
+			var ratetable = $('.lineRateEntry').each(function(i){
+				ratetableBody = ratetableBody + "<tr>" + $(this).html() + "</tr>";
+			})
+
+			var ratetable = ratetableHead + ratetableBody + ratetableTail;
+
+			//var ratetable = "<table class='table table-condensed table-striped table-bordered'><thead><tr><th>Rate</th><th>Price Per Unit</th><th>Rate Start Date</th><th>Rate End Date</th></tr></thead><tbody><tr><td>"+$('.addRateFormFields.open>.cell>select').val()+"</td><td>"+$('.addRateFormFields.open>.cell>#'+contractSection+'PricePerUnit').val()+"</td><td>"+$('.addRateFormFields.open>.cell>#'+contractSection+'RateStart').val()+"</td><td>"+$('.addRateFormFields.open>.cell>#'+contractSection+'RateEnd').val()+"</td></tr></tbody></table>";
+
+			$('#tailnumberlist').append("<li class='btn btn-success'><i class='icon icon-plane icon-white'></i> " + tail[0] + " ( " + $('.lineRateEntry').length + " rate"+ plural +" )</li><div class='addedrates'>" + tailnumbertable + ratetable + "</div>");
 
 			$('#tailNumModalForm').modal('hide');
 			$('#addTailNumField').val('');

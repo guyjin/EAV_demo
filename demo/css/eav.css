@@ -508,7 +508,7 @@ div#rates.tab-pane #tailNumModalForm {
 div#tailNumModalForm .modal-body {
 	height: auto;
 	max-height: 600px;
-	overflow: scroll-y;
+	overflow-y: scroll;
 }
 
 div#tailNumModalForm  h4 {
@@ -556,7 +556,6 @@ div#tailNumModalForm button i {
 
 #tailnumberlist {
 	clear: both;
-	font-weight: bold;
 	text-transform: uppercase;
 	list-style-type: none;
 	margin-left: 0;
@@ -569,8 +568,17 @@ div#tailNumModalForm button i {
 	display: inline-block;
 	margin-bottom: 0.5em;
 	padding-left: 5px;
+	font-weight: bold;
 }
 
 #tailnumberlist li i {
 	margin-top: 1px;
+}
+
+#tailnumberlist li + table th {
+	font-weight: bold;
+}
+
+.addrates {
+	display: none;
 }
