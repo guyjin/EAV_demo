@@ -12,7 +12,7 @@ CORE.create_module("eav-tabs", function (sb) {
 			sb.addEvent(contracts, 'click', this.handleContract);
 			// Make sure clicks on disabled tabs don't do anything to begin with.
 			sb.addEvent(rates, 'click', this.falseClick);
-			sb.addEvent(access, 'click', this.falseClick);
+			//sb.addEvent(access, 'click', this.falseClick);
 
 			// listen for messages from the forms to know when to enable the tabs.
 			sb.listen({
@@ -582,6 +582,12 @@ CORE.create_module("contract-headers", function(sb){
 			$('#tailnumberlist li').unbind('click').click(function(){
 				$(this).next().toggle();
 			});
+
+			if($('#access-tab').parent('li').hasClass('inactive')){
+				$('#access-tab').unbind('click', this.falseClick);
+				$('#access-tab').parent('li').removeClass('inactive');
+			}
+			
 
 		},
 		cancelAddTailNumber : function(){
