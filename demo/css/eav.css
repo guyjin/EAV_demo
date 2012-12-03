@@ -402,6 +402,10 @@ color: #ffffff;
 	width: auto
 }
 
+.baseratesbox select {
+	width: 150px;
+}
+
 .baseratesbox input#baseRatePrice {
 	width: 8em;
 }
@@ -508,7 +512,8 @@ div#rates.tab-pane #tailNumModalForm {
 
 div#tailNumModalForm .modal-body {
 	height: auto;
-	max-height: 600px;
+	max-height: 400
+	px;
 	overflow-y: scroll;
 }
 
